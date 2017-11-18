@@ -1,0 +1,49 @@
+<!-- Borrowed from CS50, distribution code for Problem Set 6 -->
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"/>
+
+        <link href="static/style.css" rel="stylesheet"/>
+
+        <title>Handwriting Reader</title>
+
+    </head>
+    <body>
+
+        <nav class="navbar fixed-top navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">Handwriting Reader</a>
+        </nav>
+
+        <div class="container-fluid">
+            <div>
+                <svg id="canvas" height="200" width="200">
+                    <rect height="200" width="200" stroke="black" fill="none"></rect>
+                    <path id="path" stroke="black" fill="none"></path>
+                </svg>
+            </div>
+            <div>
+                <button id="clear">Clear</button>
+                <button action="/recognize">Go</button>
+            </div>
+        </div>
+
+        <!-- http://jquery.com/ -->
+        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+        <!-- http://getbootstrap.com/ -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- app's own JavaScript -->
+        <script src="static/scripts.js"></script>
+
+    </body>
+</html>

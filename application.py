@@ -24,3 +24,8 @@ def after_request(response):
 @app.route("/")
 def index():
   render_template(index.html)
+  
+@app.route("/read")  
+def read():
+	# Our algorithm here
+	render_template(read.html, character=character)

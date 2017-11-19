@@ -23,7 +23,7 @@
             <a class="navbar-brand" href="/">Handwriting Reader</a>
         </nav>
 
-        <div padding-top="2cm" class="container-fluid">
+        <div class="container-fluid">
             <div>
                 <svg id="canvas" height="200" width="200">
                     <rect height="200" width="200" stroke="black" fill="none"></rect>
@@ -33,7 +33,7 @@
             <div>
                 <form id="form" action="/read" method="post">
                     <input type="hidden" id="input" name="input"></input>
-                    <button id="clear">Clear</button>
+                    <button type="button" id="clear">Clear</button>
                     <button type="submit">Go</button>
                 </form>
             </div>

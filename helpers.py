@@ -72,7 +72,7 @@ def make_image(path):
             slope = (end_y - start_y)/(end_x - start_x)
             # Change all the pixels the vector "touches" to black
             for x in range(start_x, end_x):
-                y = round(start_x + slope * (x - start_x))
+                y = round(start_y + slope * (x - start_x))
                 for pm1 in {-1, 0, 1}:
                     for pm2 in {-1, 0, 1}:
                         try:

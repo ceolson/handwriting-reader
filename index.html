@@ -23,16 +23,17 @@
             <a class="navbar-brand" href="/">Handwriting Reader</a>
         </nav>
 
-        <div class="container-fluid">
+        <div padding-top="2cm" class="container-fluid">
             <div>
                 <svg id="canvas" height="200" width="200">
                     <rect height="200" width="200" stroke="black" fill="none"></rect>
-                    <path id="path" stroke="black" fill="none"></path>
+                    <path id="path" stroke="black" stroke-width="3" fill="none"></path>
                 </svg>
             </div>
+            <p>test</p>
             <div>
                 <button id="clear">Clear</button>
-                <button action="/recognize">Go</button>
+                <button id="go" action="/read">Go</button>
             </div>
         </div>
 
@@ -43,7 +44,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
         <!-- app's own JavaScript -->
-        <script src="static/scripts.js"></script>
+        <script src="../static/scripts.js"></script>
 
     </body>
 </html>

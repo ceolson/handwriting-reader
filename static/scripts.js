@@ -14,11 +14,18 @@ $("#canvas")
 
 .mousemove(function(event){
 	if (dragging){
+
+		// If the path is empty, add a start point
+		// Fixes a bug if mouse goes off canvas and comes back
+		if (path == ""){
+			path += "M " + event.offsetX + " " + event.offsetY + " ";
+		}
 		// Add to path a line to current mouse position
 		path += "L " + event.offsetX + " " + event.offsetY + " ";
-		
+
 		// Add the path to the SVG
 		$("#path").attr("d", path)
+		$("#input").attr("value", path);
 	}
 })
 
@@ -28,5 +35,8 @@ $("#canvas")
 
 $("#clear").click(function(){
 	$("#path").attr("d", "")
+
+	// https://stackoverflow.com/questions/17809056/how-to-add-additional-fields-to-form-before-submit
+	$("#input").attr("value", "");
 	path = ""
 })

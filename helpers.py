@@ -32,7 +32,7 @@ def get_vectors(path):
 
 # Construct a raster image "bitmap" (not actually bitmap format)
 def make_image(path):
-	SIDE_LENGTH = 10000
+	SIDE_LENGTH = 100
 
 	# Make a 2D array to represent image
 	# Start with white image, all pixels 0
@@ -43,23 +43,28 @@ def make_image(path):
 	for vector in vectors:
 
 		# Extract basic info
-		start_x = vector[0][0]
-		start_y = vector[0][1]
-		end_x = vector[1][0]
-		end_y = vector[1][1]
+		start_x = int(vector[0][0])
+		start_y = int(vector[0][1])
+		end_x = int(vector[1][0])
+		end_y = int(vector[1][1])
 
 		# Scale info from the 200x200 dimensions of the SVG
 		# to the dimensions of the bitmap
-		start_x = start_x / 200 * SIDE_LENGTH
-		start_y = start_y / 200 * SIDE_LENGTH
-		end_x = end_x / 200 * SIDE_LENGTH
-		end_y = end_y / 200 * SIDE_LENGTH
+		start_x = round(start_x / 200 * SIDE_LENGTH)
+		start_y = round(start_y / 200 * SIDE_LENGTH)
+		end_x = round(end_x / 200 * SIDE_LENGTH)
+		end_y = round(end_y / 200 * SIDE_LENGTH)
 
-		slope = (end_y - start_y)/(end_x - start_x)
+		if end_x - start_x == 0:
+			for y in range(start_y, end_y):
+				image[y][start_x] = 1
 
-		# Change all the pixels the vector "touches" to black
-		for x in range(start_x, end_x):
-			y = round(int(x + slope(x - x_start))
-			image[y][x] = 1
+		else:		
+			slope = (end_y - start_y)/(end_x - start_x)
+
+			# Change all the pixels the vector "touches" to black
+			for x in range(start_x, end_x):
+				y = round(x + slope * (x - start_x))
+				image[y][x] = 1
+
 	return image
-	

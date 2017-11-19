@@ -1,15 +1,10 @@
 import os
 import re
 from flask import Flask, jsonify, render_template, request
-
-from cs50 import SQL
-from helpers import lookup
+from helpers import make_image
 
 # Configure application
 app = Flask(__name__)
-
-# Configure CS50 Library to use SQLite database
-db = SQL("sqlite:///mashup.db")
 
 
 # Ensure responses aren't cached
@@ -23,9 +18,11 @@ def after_request(response):
 
 @app.route("/")
 def index():
-  render_template(index.html)
+  return render_template("index.html")
   
-@app.route("/read")  
+@app.route("/read", methods=["GET", "POST"])  
 def read():
 	# Our algorithm here
-	render_template(read.html, character=character)
+	path = request.form.get("input")
+	image = make_image(path)
+	return render_template("read.html", image=image, SIDE_LENGTH=100)

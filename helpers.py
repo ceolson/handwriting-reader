@@ -60,24 +60,42 @@ def make_image(path):
         end_y = round(end_y / 200 * SIDE_LENGTH)
 
         if end_x - start_x == 0:
-            for y in range(start_y, end_y):
-                for pm1 in {-1, 0, 1}:
-                    for pm2 in {-1, 0, 1}:
-                        try:
-                            image[y + pm1][start_x + pm2] = 1
-                        except IndexError:
-                            pass
+            if end_y > start_y:
+                for y in range(start_y, end_y + 1):
+                    for pm1 in {-1, 0, 1}:
+                        for pm2 in {-1, 0, 1}:
+                            try:
+                                image[y + pm1][start_x + pm2] = 1
+                            except IndexError:
+                                pass
+            else:
+                for y in range(end_y, start_y + 1):
+                    for pm1 in {-1, 0, 1}:
+                        for pm2 in {-1, 0, 1}:
+                            try:
+                                image[y + pm1][start_x + pm2] = 1
+                            except IndexError:
+                                pass
+
 
         else:       
             slope = (end_y - start_y)/(end_x - start_x)
             # Change all the pixels the vector "touches" to black
-            for x in range(start_x, end_x):
+            for x in range(start_x, end_x + 1):
                 y = round(start_y + slope * (x - start_x))
                 for pm1 in {-1, 0, 1}:
                     for pm2 in {-1, 0, 1}:
                         try:
+                            if prev_y > y:
+                                for y_pt in range(y, prev_y + 1):
+                                    image[y_pt + pm1][x + pm2] = 1
+                            else:
+                                for y_pt in range(prev_y, y + 1):
+                                    image[y_pt + pm1][x + pm2] = 1
+                        except NameError:
                             image[y + pm1][x + pm2] = 1
                         except IndexError:
                             pass
+                prev_y = y
 
     return image

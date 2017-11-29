@@ -32,7 +32,7 @@ def get_vectors(path):
 
 # Construct a raster image "bitmap" (not actually bitmap format)
 def make_image(path):
-    SIDE_LENGTH = 100
+    SIDE_LENGTH = 28
 
     # Make a 2D array to represent image
     # Start with white image, all pixels 0

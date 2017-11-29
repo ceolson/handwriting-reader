@@ -25,4 +25,5 @@ def read():
 	# Our algorithm here
 	path = request.form.get("input")
 	image = make_image(path)
-	return render_template("read.html", image=image, SIDE_LENGTH=100)
+    character = recognize(image)
+	return render_template("read.html", character=character)

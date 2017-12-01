@@ -73,3 +73,10 @@ one_hot_labels = keras.utils.to_categorical(labels, num_classes=10)
 # Train the model, iterating on the data in batches of 32 samples
 model.fit(data, one_hot_labels, epochs=10, batch_size=32)
 
+test_pairs = get_test_data()
+
+x_test = test_pairs[0][0]
+y_test = test_pairs[1][0]
+
+score = model.evaluate(x_test, y_test, batch_size=128)
+

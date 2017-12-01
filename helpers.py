@@ -36,7 +36,7 @@ def make_image(path):
 
     # Make a 2D array to represent image
     # Start with white image, all pixels 0
-    image = [[0 for i in range(SIDE_LENGTH)] for j in range(SIDE_LENGTH)]
+    image = [[0.0 for i in range(SIDE_LENGTH)] for j in range(SIDE_LENGTH)]
 
     vectors = get_vectors(path)
 
@@ -68,11 +68,11 @@ def make_image(path):
                 for y in range(start_y, end_y + 1):
 
                     # Gives the line "width" of 3
-                    for pm1 in {-1, 0, 1}:
-                        for pm2 in {-1, 0, 1}:
+                    for pm1 in {0, 1}:
+                        for pm2 in {0, 1}:
 
                             try:
-                                image[y + pm1][start_x + pm2] = 1
+                                image[y + pm1][start_x + pm2] = 1.0
 
                             # If this goes off the grid, pass
                             except IndexError:
@@ -82,11 +82,11 @@ def make_image(path):
                 for y in range(end_y, start_y + 1):
 
                     # Gives the line "width" of 3
-                    for pm1 in {-1, 0, 1}:
-                        for pm2 in {-1, 0, 1}:
+                    for pm1 in {0, 1}:
+                        for pm2 in {0, 1}:
                             
                             try:
-                                image[y + pm1][start_x + pm2] = 1
+                                image[y + pm1][start_x + pm2] = 1.0
 
                             # If this goes off the grid, pass
                             except IndexError:
@@ -103,21 +103,21 @@ def make_image(path):
                 y = round(start_y + slope * (x - start_x))
 
                 # Gives line "width of 3"
-                for pm1 in {-1, 0, 1}:
-                    for pm2 in {-1, 0, 1}:
+                for pm1 in {0, 1}:
+                    for pm2 in {0, 1}:
                         try:
                             # Runs over all y from whatever the last one was to this y
                             # Split up so range works
                             if prev_y > y:
                                 for y_pt in range(y, prev_y + 1):
-                                    image[y_pt + pm1][x + pm2] = 1
+                                    image[y_pt + pm1][x + pm2] = 1.0
                             else:
                                 for y_pt in range(prev_y, y + 1):
-                                    image[y_pt + pm1][x + pm2] = 1
+                                    image[y_pt + pm1][x + pm2] = 1.0
 
                         # If this is first y, no previous y to come from
                         except NameError:
-                            image[y + pm1][x + pm2] = 1
+                            image[y + pm1][x + pm2] = 1.0
 
                         # Offscreen
                         except IndexError:

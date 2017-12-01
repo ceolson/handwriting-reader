@@ -2,6 +2,7 @@ import os
 import re
 from flask import Flask, jsonify, render_template, request
 from helpers import make_image
+from recognize import recognize
 
 # Configure application
 app = Flask(__name__)
@@ -22,8 +23,8 @@ def index():
   
 @app.route("/read", methods=["GET", "POST"])  
 def read():
-	# Our algorithm here
-	path = request.form.get("input")
-	image = make_image(path)
+    # Our algorithm here
+    path = request.form.get("input")
+    image = make_image(path)
     character = recognize(image)
-	return render_template("read.html", character=character)
+    return render_template("recognize.html", character=character)

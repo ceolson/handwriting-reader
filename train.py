@@ -56,9 +56,9 @@ import h5py
 
 model = Sequential()
 
-model.add(Dense(units=20, activation='relu', input_dim=28 * 28))
+model.add(Dense(units=50, activation='relu', input_dim=28 * 28))
 model.add(Dense(units=20, activation='relu'))
-model.add(Dense(units=10, activation='relu'))
+model.add(Dense(units=10, activation='softmax'))
 
 model.compile(optimizer='adam',
               loss='categorical_crossentropy',

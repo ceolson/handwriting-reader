@@ -16,14 +16,12 @@ def recognize(image):
 
     print(image_array)
 
-    predictions = nn.predict(image_array, batch_size=12)
+    predictions = nn.predict(image_array)[0]
 
-    print(type(predictions), type(predictions[0]), predictions)
-    rounded = [round(x[0]) for x in predictions]
-    return rounded
-
-    # max = 0
-    # for i in range(len(prediction_array)):
-    #     if prediction_array[i] > max:
-    #         max = prediction_array[i]
-    #         return i
+    maximum = 0
+    max_place = None
+    for i in range(len(predictions)):
+        if predictions[i] > maximum:
+            maximum = predictions[i]
+            max_place = i
+    return max_place

@@ -25,7 +25,7 @@ $("#canvas")
 
 		// Add the path to the SVG
 		$("#path").attr("d", path)
-		$("#input").attr("value", path);
+		$("#draw").attr("value", path);
 	}
 })
 
@@ -37,6 +37,6 @@ $("#clear").click(function(){
 	$("#path").attr("d", "")
 
 	// https://stackoverflow.com/questions/17809056/how-to-add-additional-fields-to-form-before-submit
-	$("#input").attr("value", "");
+	$("#draw").attr("value", "");
 	path = ""
 })

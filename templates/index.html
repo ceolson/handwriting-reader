@@ -31,9 +31,16 @@
                 </svg>
             </div>
             <div>
-                <form id="form" action="/read" method="post">
-                    <input type="hidden" id="input" name="input"></input>
+                <form id="draw_form" action="/read-vector" method="post">
+                    <input type="hidden" id="draw" name="draw"></input>
                     <button type="button" id="clear">Clear</button>
+                    <button type="submit">Go</button>
+                </form>
+            </div>
+            <div>
+                <form id="file_form" action="/read-file" method="post" enctype="multipart/form-data">
+                    <label for="file">Upload a BMP file to recognize</label>
+                    <input type="file" name="file" id="file">
                     <button type="submit">Go</button>
                 </form>
             </div>

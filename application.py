@@ -1,8 +1,10 @@
 import os
 import re
 from flask import Flask, jsonify, render_template, request
-from helpers import make_image
+from vector_helpers import make_image, fuzzify
+from bitmap_helpers import process
 from recognize import recognize
+from scipy import misc
 
 # Configure application
 app = Flask(__name__)
@@ -21,10 +23,19 @@ def after_request(response):
 def index():
   return render_template("index.html")
   
-@app.route("/read", methods=["GET", "POST"])  
-def read():
+@app.route("/read-vector", methods=["POST"])  
+def read_vector():
     # Our algorithm here
-    path = request.form.get("input")
+    path = request.form.get("draw")
     image = make_image(path)
+    character = recognize(fuzzify(image))
+    return render_template("recognize.html", character=character)
+
+@app.route("/read-file", methods=["POST"])  
+def read_file():
+    # Our algorithm here
+    file = request.files["file"]
+    arr = misc.imread(file)
+    image = process(arr)
     character = recognize(image)
     return render_template("recognize.html", character=character)

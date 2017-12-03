@@ -1,3 +1,5 @@
+import numpy as np
+
 # Extract vectors from a SVG path
 def get_vectors(path):
     vectors = []
@@ -124,4 +126,20 @@ def make_image(path):
                             pass
                 prev_y = y
 
-    return image
+    return np.array(image)
+
+def fuzzify(image):
+    new_image = []
+    for row in image:
+        new_row = []
+        for i in range(len(row)):
+            try:
+                if (row[i + 1] == 1.0 or row[i - 1] == 1.0) and row[i] == 0.0:
+                    new_row.append(0.5)
+                else:
+                    new_row.append(row[i])
+            except IndexError:
+                new_row.append(row[i])
+        new_image.append(new_row)
+
+    return np.array(new_image)

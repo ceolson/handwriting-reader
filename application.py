@@ -38,4 +38,7 @@ def read_file():
     arr = misc.imread(file)
     image = process(arr)
     character = recognize(image)
-    return render_template("recognize.html", character=character)
+    # return render_template("recognize.html", character=character)
+    return render_template("read.html", image=image, SIDE_LENGTH=28)
+
+# @app.route()

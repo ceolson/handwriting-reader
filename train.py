@@ -91,6 +91,6 @@ model.fit(data, one_hot_labels, epochs=10, batch_size=32)
 
 # print(score)
 
-model.save("/Users/ceolson/cs/cs50/handwriting-reader/modely.h5")
+model.save("/Users/mridunanda/cs50_final/handwriting-reader/modely.h5")
 
 

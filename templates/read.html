@@ -24,16 +24,17 @@
         </nav>
 
         <div padding-top="2cm" class="container-fluid">
-            <h1>{{ character }}</h1>
+            <table>
+                {% for i in range(SIDE_LENGTH) %}
+                <tr>
+                    {% for j in range(SIDE_LENGTH) %}
+                    <td>{{ image[i][j] }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
             <form action="/">
                 <button type="submit">Back</button>
-            </form>
-            <form action="/learn">
-                <p>Optional: tell us if we were correct and help our network learn!</p>
-                <input type="checkbox" name="yes"> Correct </input>
-                <input type="checkbox" name="yes"> Incorrect </input>
-                <input type="numerical" name="should_be"> If we were incorrect, what was the number? </input>
-                <button type="submit"> Submit </button>
             </form>
         </div>
 

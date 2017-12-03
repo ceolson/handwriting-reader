@@ -13,7 +13,7 @@ def recognize(image):
             image2[0].append(pixel)
 
     image_array = np.array(image2)
-
+    print(image_array)
     predictions = nn.predict(image_array)[0]
 
     maximum = 0

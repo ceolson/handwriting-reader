@@ -28,7 +28,10 @@
                 {% for i in range(SIDE_LENGTH) %}
                 <tr>
                     {% for j in range(SIDE_LENGTH) %}
-                    <td>{{ image[i][j] }}</td>
+                    
+                        {%set grayval = 255 - (image[i][j] * 255) %}
+                        <td bgcolor=rgb({{grayval}}, {{grayval}}, {{grayval}})> {{image[i][j]}} </td>
+
                     {% endfor %}
                 </tr>
                 {% endfor %}

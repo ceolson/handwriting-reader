@@ -70,8 +70,8 @@ def make_image(path):
                 for y in range(start_y, end_y + 1):
 
                     # Gives the line "width" of 3
-                    for pm1 in {0, 1}:
-                        for pm2 in {0, 1}:
+                    for pm1 in {0}:
+                        for pm2 in {0}:
 
                             try:
                                 image[y + pm1][start_x + pm2] = 1.0
@@ -84,8 +84,8 @@ def make_image(path):
                 for y in range(end_y, start_y + 1):
 
                     # Gives the line "width" of 3
-                    for pm1 in {0, 1}:
-                        for pm2 in {0, 1}:
+                    for pm1 in {0}:
+                        for pm2 in {0}:
                             
                             try:
                                 image[y + pm1][start_x + pm2] = 1.0
@@ -105,8 +105,8 @@ def make_image(path):
                 y = round(start_y + slope * (x - start_x))
 
                 # Gives line "width of 3"
-                for pm1 in {0, 1}:
-                    for pm2 in {0, 1}:
+                for pm1 in {0}:
+                    for pm2 in {0}:
                         try:
                             # Runs over all y from whatever the last one was to this y
                             # Split up so range works

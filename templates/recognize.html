@@ -28,11 +28,12 @@
             <form action="/">
                 <button type="submit">Back</button>
             </form>
-            <form action="/learn">
+            <br>
+            <form id="learn" action="/learn" method="post">
                 <p>Optional: tell us if we were correct and help our network learn!</p>
-                <input type="checkbox" name="yes"> Correct </input>
-                <input type="checkbox" name="yes"> Incorrect </input>
-                <input type="numerical" name="should_be"> If we were incorrect, what was the number? </input>
+                <input type="checkbox" name="yes" id="yes"> Correct </input><br>
+                <input type="checkbox" name="no" id="no"> Incorrect </input>
+                <input type="number" name="num" id="num" placeholder="What should it be?"></input>
                 <button type="submit"> Submit </button>
             </form>
         </div>

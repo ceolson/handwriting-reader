@@ -1,14 +1,15 @@
 import os
 import re
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, session
 from vector_helpers import make_image, fuzzify
 from bitmap_helpers import process
-from recognize import recognize
+from recognize import recognize, re_learn
 from scipy import misc
+import numpy as np
 
 # Configure application
 app = Flask(__name__)
-
+app.secret_key = "secrets"
 
 # Ensure responses aren't cached
 @app.after_request
@@ -25,20 +26,31 @@ def index():
   
 @app.route("/read-vector", methods=["POST"])  
 def read_vector():
-    # Our algorithm here
     path = request.form.get("draw")
     image = make_image(path)
     character = recognize(fuzzify(image))
+    session["image"] = image.tolist()
+    session["character"] = character
+    global_image_store = fuzzify(image)
     return render_template("recognize.html", character=character)
+    # return render_template("read.html", image=fuzzify(image), SIDE_LENGTH=28)
 
 @app.route("/read-file", methods=["POST"])  
 def read_file():
-    # Our algorithm here
     file = request.files["file"]
     arr = misc.imread(file)
     image = process(arr)
     character = recognize(image)
-    # return render_template("recognize.html", character=character)
-    return render_template("read.html", image=image, SIDE_LENGTH=28)
+    session["image"] = image.tolist()
+    session["character"] = character
+    return render_template("recognize.html", character=character)
+    # return render_template("read.html", image=image, SIDE_LENGTH=28)
 
-# @app.route()
+@app.route("/learn", methods=["POST"])
+def learn():
+    correct = True if request.form.get("yes") == "on" else False
+    should_be = request.form.get("num") if not correct else session["character"]
+    re_learn(np.array(session["image"]), should_be)
+    return render_template("index.html")
+
+

@@ -71,13 +71,8 @@ def make_image(path):
                 for y in range(start_y, end_y + 1):
 
                     # Gives the line "width" of 3
-<<<<<<< HEAD
-                    for pm1 in {-1, 0, 1}:
-                        for pm2 in {-1 ,0, 1}:
-=======
                     for pm1 in {0}:
                         for pm2 in {0}:
->>>>>>> 8278f57ed0ec3a11e75f651b08b7cfa5b39a4889
 
                             try:
                                 image[y + pm1][start_x + pm2] = 1.0
@@ -90,13 +85,8 @@ def make_image(path):
                 for y in range(end_y, start_y + 1):
 
                     # Gives the line "width" of 3
-<<<<<<< HEAD
-                    for pm1 in {-1, 0, 1}:
-                        for pm2 in {-1, 0, 1}:
-=======
                     for pm1 in {0}:
                         for pm2 in {0}:
->>>>>>> 8278f57ed0ec3a11e75f651b08b7cfa5b39a4889
                             
                             try:
                                 image[y + pm1][start_x + pm2] = 1.0
@@ -116,13 +106,8 @@ def make_image(path):
                 y = round(start_y + slope * (x - start_x))
 
                 # Gives line "width of 3"
-<<<<<<< HEAD
-                for pm1 in {-1, 0, 1}:
-                    for pm2 in {-1, 0, 1}:
-=======
                 for pm1 in {0}:
                     for pm2 in {0}:
->>>>>>> 8278f57ed0ec3a11e75f651b08b7cfa5b39a4889
                         try:
                             # Runs over all y from whatever the last one was to this y
                             # Split up so range works
@@ -144,29 +129,9 @@ def make_image(path):
 
     return np.array(image)
 
-<<<<<<< HEAD
-def new_fuzzify(image):
-    new_image = []
-    for row in image:
-        new_row = []
-        for i in range(len(row)):
-            try:
-                if (row[i - 1] or row[i + 1] == 0.0) and row[i] == 1.0:
-                    new_row.append(0.5)
-                else:
-                    new_row.append(row[i])
-            except IndexError:
-                new_row.append(row[i])
-        new_image.append(new_row)
-
-    return np.array(new_image)
-
-def fuzzify(image):
-=======
 def blur(image):
 
     # Make a new array to fill with a new image
->>>>>>> 8278f57ed0ec3a11e75f651b08b7cfa5b39a4889
     new_image = []
 
     # Initialize this variable, comes up later

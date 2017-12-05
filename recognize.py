@@ -12,7 +12,13 @@ def recognize(image):
         for pixel in row:
             image_2dim[0].append(pixel)
 
+<<<<<<< HEAD
+    image_array = np.array(image2)
+
+    #print(image_array)
+=======
     image_array = np.array(image_2dim)
+>>>>>>> 8278f57ed0ec3a11e75f651b08b7cfa5b39a4889
 
     predictions = nn.predict(image_array)[0]
 

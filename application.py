@@ -1,7 +1,7 @@
 import os
 import re
-from flask import Flask, jsonify, render_template, request, session
-from vector_helpers import make_image, fuzzify
+from flask import Flask, jsonify, render_template, request, session, redirect, url_for
+from vector_helpers import make_image, blur
 from bitmap_helpers import process
 from recognize import recognize, re_learn
 from scipy import misc
@@ -49,8 +49,10 @@ def read_file():
 @app.route("/learn", methods=["POST"])
 def learn():
     correct = True if request.form.get("yes") == "on" else False
-    should_be = request.form.get("num") if not correct else session["character"]
+    should_be = int(request.form.get("num")) if not correct else session["character"]
+    if not(should_be in range(10)):
+        return redirect(url_for("index"))
     re_learn(np.array(session["image"]), should_be)
-    return render_template("index.html")
+    return redirect(url_for("index"))
 
 

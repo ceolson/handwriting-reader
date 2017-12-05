@@ -59,7 +59,7 @@ def gray(matrix):
     for row in matrix:
         new_row = []
         for pixel in row:
-            average_intensity = (pixel[0] + pixel[1] + pixel[2]) / 3
+            average_intensity = pixel[0]
             bw = (255 - average_intensity) / 255
             if bw < 0.5:
                 bw = 0.0

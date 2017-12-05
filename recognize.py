@@ -8,7 +8,7 @@ def recognize(image):
     # Get model from storage on server
     model = load_model("modely.h5")
 
-    # Enclose image in another set of brackets
+    # Enclose image in another set of brackets and remove array structure
     image_2dim = [[]]
     for row in image:
         for pixel in row:
@@ -30,10 +30,12 @@ def recognize(image):
     return max_place
 
 def re_learn(image, label):
+
     # Get model from storage on server
     model = load_model("modely.h5")
 
     # Compile for learning
+    # Copied from ttps://keras.io/getting-started/sequential-model-guide/
     model.compile(optimizer='adam',
               loss='categorical_crossentropy',
               metrics=['accuracy'])
@@ -53,6 +55,7 @@ def re_learn(image, label):
     labels = np.array(label_array)
 
     # Convert labels to categorical one-hot encoding
+    # Copied from ttps://keras.io/getting-started/sequential-model-guide/
     one_hot_labels = keras.utils.to_categorical(labels, num_classes=10)
 
     # Train the model

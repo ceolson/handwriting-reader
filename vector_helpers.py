@@ -21,6 +21,7 @@ def get_vectors(path):
             # Skip over the "L"
             i = i + 1
 
+            # Get the second coordinate
             end = (split[i], split[i + 1])
             prev_point = end
             i = i + 2
@@ -33,7 +34,7 @@ def get_vectors(path):
         
     return vectors
 
-# Construct a raster image "bitmap" (not actually bitmap format)
+# Construct a raster image represented as a matrix of pixels
 def make_image(path):
     SIDE_LENGTH = 28
 
@@ -51,6 +52,7 @@ def make_image(path):
         end_x = int(vector[1][0])
         end_y = int(vector[1][1])
 
+        # Switch coordinates so x always goes left to right
         if start_x > end_x:
             start_x, end_x = end_x, start_x
             start_y, end_y = end_y, start_y
@@ -70,9 +72,9 @@ def make_image(path):
             if end_y > start_y:
                 for y in range(start_y, end_y + 1):
 
-                    # Gives the line "width" of 3
-                    for pm1 in {0}:
-                        for pm2 in {0}:
+                    # Gives the line width 2
+                    for pm1 in {0, 1}:
+                        for pm2 in {0, 1}:
 
                             try:
                                 image[y + pm1][start_x + pm2] = 1.0
@@ -84,9 +86,9 @@ def make_image(path):
             else:
                 for y in range(end_y, start_y + 1):
 
-                    # Gives the line "width" of 3
-                    for pm1 in {0}:
-                        for pm2 in {0}:
+                    # Gives the line width 2
+                    for pm1 in {0, 1}:
+                        for pm2 in {0, 1}:
                             
                             try:
                                 image[y + pm1][start_x + pm2] = 1.0
@@ -105,9 +107,9 @@ def make_image(path):
                 #Caluculate y using slope formula
                 y = round(start_y + slope * (x - start_x))
 
-                # Gives line "width of 3"
-                for pm1 in {0}:
-                    for pm2 in {0}:
+                # Gives line width of 2
+                for pm1 in {0, 1}:
+                    for pm2 in {0, 1}:
                         try:
                             # Runs over all y from whatever the last one was to this y
                             # Split up so range works

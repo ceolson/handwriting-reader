@@ -5,8 +5,10 @@ from MNIST import get_test_data
 import random
 
 def recognize(image):
-    nn = load_model("modely.h5")
+    # Get model from storage on server
+    model = load_model("modely.h5")
 
+    # Enclose image in another set of brackets
     image_2dim = [[]]
     for row in image:
         for pixel in row:
@@ -14,39 +16,47 @@ def recognize(image):
 
     image_array = np.array(image_2dim)
 
-    predictions = nn.predict(image_array)[0]
+    # Predict!
+    predictions = model.predict(image_array)[0]
 
+    # Read prediction array and return what the character should be
     maximum = 0
     max_place = None
     for i in range(len(predictions)):
         if predictions[i] > maximum:
             maximum = predictions[i]
             max_place = i
+
     return max_place
 
 def re_learn(image, label):
+    # Get model from storage on server
     model = load_model("modely.h5")
 
+    # Compile for learning
     model.compile(optimizer='adam',
               loss='categorical_crossentropy',
               metrics=['accuracy'])
 
+    # Add another set of brackets
     image_2dim = [[]]
     for row in image:
         for pixel in row:
             image_2dim[0].append(pixel)
 
-    image_array = np.array(image_2dim)
+
+    data = np.array(image_2dim)
+
+    # Format labels correctly
     label_array = [[]]
     label_array[0].append(label)
-
     labels = np.array(label_array)
-    data = image_array
 
     # Convert labels to categorical one-hot encoding
     one_hot_labels = keras.utils.to_categorical(labels, num_classes=10)
 
-    # Train the model, iterating on the data in batches of 32 samples
-    model.fit(data, one_hot_labels, epochs=10, batch_size=32)
+    # Train the model
+    model.fit(data, one_hot_labels, epochs=10)
 
+    # Save the model
     model.save("/Users/ceolson/cs/cs50/handwriting-reader/modely.h5")

@@ -1,4 +1,5 @@
 import numpy as np
+import random
 
 # Extract vectors from a SVG path
 def get_vectors(path):
@@ -70,8 +71,13 @@ def make_image(path):
                 for y in range(start_y, end_y + 1):
 
                     # Gives the line "width" of 3
+<<<<<<< HEAD
                     for pm1 in {-1, 0, 1}:
                         for pm2 in {-1 ,0, 1}:
+=======
+                    for pm1 in {0}:
+                        for pm2 in {0}:
+>>>>>>> 8278f57ed0ec3a11e75f651b08b7cfa5b39a4889
 
                             try:
                                 image[y + pm1][start_x + pm2] = 1.0
@@ -84,8 +90,13 @@ def make_image(path):
                 for y in range(end_y, start_y + 1):
 
                     # Gives the line "width" of 3
+<<<<<<< HEAD
                     for pm1 in {-1, 0, 1}:
                         for pm2 in {-1, 0, 1}:
+=======
+                    for pm1 in {0}:
+                        for pm2 in {0}:
+>>>>>>> 8278f57ed0ec3a11e75f651b08b7cfa5b39a4889
                             
                             try:
                                 image[y + pm1][start_x + pm2] = 1.0
@@ -105,8 +116,13 @@ def make_image(path):
                 y = round(start_y + slope * (x - start_x))
 
                 # Gives line "width of 3"
+<<<<<<< HEAD
                 for pm1 in {-1, 0, 1}:
                     for pm2 in {-1, 0, 1}:
+=======
+                for pm1 in {0}:
+                    for pm2 in {0}:
+>>>>>>> 8278f57ed0ec3a11e75f651b08b7cfa5b39a4889
                         try:
                             # Runs over all y from whatever the last one was to this y
                             # Split up so range works
@@ -128,6 +144,7 @@ def make_image(path):
 
     return np.array(image)
 
+<<<<<<< HEAD
 def new_fuzzify(image):
     new_image = []
     for row in image:
@@ -145,17 +162,60 @@ def new_fuzzify(image):
     return np.array(new_image)
 
 def fuzzify(image):
+=======
+def blur(image):
+
+    # Make a new array to fill with a new image
+>>>>>>> 8278f57ed0ec3a11e75f651b08b7cfa5b39a4889
     new_image = []
+
+    # Initialize this variable, comes up later
+    pass_on = False
+
+    # For each row, make a new row
     for row in image:
         new_row = []
+
+        # For each pixel in the row, do something
         for i in range(len(row)):
-            try:
-                if (row[i + 1] == 1.0 or row[i - 1] == 1.0) and row[i] == 0.0:
-                    new_row.append(0.5)
-                else:
+
+            # If we have been told to make this 0.5, do it
+            if pass_on:
+                new_row.append(0.5)
+                pass_on = False
+
+            else:
+                try:
+                    # If this is a white pixel next to a black pixel
+                    if (row[i + 1] == 1.0 or row[i - 1] == 1.0) and row[i] == 0.0:
+
+                        # Randomly chose whether to make this pixel 0.5 or make the
+                        # adjacent black pixel 0.5
+                        flip = random.random()
+
+                        if flip < 0.5:
+                            new_row.append(0.5)
+
+                        elif row[i + 1] == 1.0:
+                            # The next pixel should be 0.5
+                            pass_on = True
+                            new_row.append(row[i])
+
+                        else:
+                            # The previous pixel should be changed to 0.5
+                            new_row.pop()
+                            new_row.append(0.5)
+                            new_row.append(row[i])
+
+                    else:
+                        # If this is not a white pixel bordering a black pixel, preserve it
+                        new_row.append(row[i])
+
+                except IndexError:
+                    # If this is the end of a row, preserve it
                     new_row.append(row[i])
-            except IndexError:
-                new_row.append(row[i])
+
+        # Add the new row to the image we're building
         new_image.append(new_row)
 
     return np.array(new_image)

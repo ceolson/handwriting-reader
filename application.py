@@ -28,12 +28,12 @@ def index():
 def read_vector():
     path = request.form.get("draw")
     image = make_image(path)
-    character = recognize(fuzzify(image))
+    character = recognize(blur(image))
     session["image"] = image.tolist()
     session["character"] = character
-    global_image_store = fuzzify(image)
+    global_image_store = blur(image)
     return render_template("recognize.html", character=character)
-    # return render_template("read.html", image=fuzzify(image), SIDE_LENGTH=28)
+    # return render_template("read.html", image=blur(image), SIDE_LENGTH=28)
 
 @app.route("/read-file", methods=["POST"])  
 def read_file():

@@ -14,7 +14,7 @@ def recognize(image):
 
     image_array = np.array(image2)
 
-    print(image_array)
+    #print(image_array)
 
     predictions = nn.predict(image_array)[0]
 

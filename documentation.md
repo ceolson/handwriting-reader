@@ -6,11 +6,12 @@
 	- Static
 		- `script.js` contains logic for user drawn input 
 		- `style.css` contains style information for templates
-	-Templates
+	- Templates
 		- `index.html` contains the template for the site homepage
 		- `recognize.html` contains the template for our networks guess. It also contains options for the user to help train our website by validating (or correcting) our guess. 
 		- `read.html` is a page we created to help debug our “blurred” user image. This page is not displayed in the working, submitted version.
 		- `appplication.py`
+	- Screenshots: screenshots for this document.
 	- Flask application 
 		- `recognize.py`
 			- Guesses number from user input as well as retraining data-set with user input
@@ -41,11 +42,11 @@
 
 No need to run the training files to run our project. These are left in the submission for reference. In case you DO want to re-run the training, simply type “`python train.py`”.
 
-
+!(/screenshots/input.png)
 
 Users can either draw in the white box or upload an image to be recognized. Once uploaded, the user hits “Go” and is redirected to the following page:
 
-
+!(/screenshots/input.png)
 
 This page displays our networks guess. We also give the user the option to help our network learn.
 Simply type in the number that the prediction should be.

@@ -42,16 +42,16 @@
 
 No need to run the training files to run our project. These are left in the submission for reference. In case you DO want to re-run the training, simply type “`python train.py`”.
 
-!(/screenshots/input.png)
+!(/screenshots/input.png?raw=true | width=549 height=417)
 
 Users can either draw in the white box or upload an image to be recognized. Once uploaded, the user hits “Go” and is redirected to the following page:
 
-!(/screenshots/input.png)
+!(/screenshots/input.png?raw=true | width=515 height=295)
 
 This page displays our networks guess. We also give the user the option to help our network learn.
 Simply type in the number that the prediction should be.
 
-Credits: The software depends on the Keras library for Python3, which uses the Tensorflow library to create, train, and run the neural network. The training data was taken from the free MNIST database hosted here `mnist`. This project was inspired by the Detexify web app here `http://detexify.kirelabs.org/classify.html`.
+Credits: The software depends on the Keras library for Python3, which uses the Tensorflow library to create, train, and run the neural network. The training data was taken from the free MNIST database hosted here `http://yann.lecun.com/exdb/mnist/`. This project was inspired by the Detexify web app here `http://detexify.kirelabs.org/classify.html`.
 
 
 

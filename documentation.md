@@ -42,11 +42,11 @@
 
 No need to run the training files to run our project. These are left in the submission for reference. In case you DO want to re-run the training, simply type “`python train.py`”.
 
-!(/screenshots/input.png?raw=true)
+![alt text](/screenshots/input.png?raw=true)
 
 Users can either draw in the white box or upload an image to be recognized. Once uploaded, the user hits “Go” and is redirected to the following page:
 
-!(/screenshots/input.png?raw=true)
+![alt text](/screenshots/input.png?raw=true)
 
 This page displays our networks guess. We also give the user the option to help our network learn.
 Simply type in the number that the prediction should be.

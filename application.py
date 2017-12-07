@@ -70,7 +70,12 @@ def learn():
     correct = True if request.form.get("yes") == "on" else False
 
     # Find what the label of the image should be
-    should_be = int(request.form.get("num")) if not correct else session["character"]
+    should_be = request.form.get("num") if not correct else session["character"]
+
+    if not should_be:
+        return redirect(url_for("index"))
+
+    should_be = int(should_be)
 
     # Validate label input
     if not(should_be in range(10)):

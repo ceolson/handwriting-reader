@@ -39,6 +39,7 @@ def read_vector():
     character = recognize(blur(image))
 
     # Saves image and recognition in session
+    # From https://stackoverflow.com/questions/27611216/how-to-pass-a-variable-between-flask-pages
     session["image"] = image.tolist()
     session["character"] = character
 
@@ -50,6 +51,7 @@ def read_file():
     file = request.files["file"]
 
     # Use scipy function to read image into pixel array
+    # As per https://docs.scipy.org/doc/scipy/reference/generated/scipy.misc.imread.html
     arr = misc.imread(file)
 
     # Send array through a bunch of functions in bitmap_helpers

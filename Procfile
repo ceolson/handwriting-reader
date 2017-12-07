@@ -1,1 +1,1 @@
-web: unicorn app:application
+web: flask run

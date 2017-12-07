@@ -1,7 +1,7 @@
 import numpy as np
 import binascii as b
 
-# Helper function to convert things like 
+# Helper function to convert things like "\x0a" to things like "11"
 def dehexify(string):
     return(int(ord(string)))
 

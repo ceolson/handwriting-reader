@@ -62,4 +62,4 @@ def re_learn(image, label):
     model.fit(data, one_hot_labels, epochs=10)
 
     # Save the model
-    model.save("/Users/ceolson/cs/cs50/handwriting-reader/modely.h5")
+    model.save("modely.h5")
